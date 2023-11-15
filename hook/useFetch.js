@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { RAPID_API_KEY } from "@env";
+// import { RAPID_API_KEY } from "@env";
 
-const rapidApiKey = RAPID_API_KEY;
-const useFetch = ({endpoint}) => {
+// const rapidApiKey = RAPID_API_KEY;
+const useFetch = (endpoint,QUERY) => {
     /**
      * Planning to reuse this functionality hence the name HOOK
      * will take endpoint as a prop, just makes the URL reusable.
@@ -16,16 +16,16 @@ const useFetch = ({endpoint}) => {
     const options = {
         method: 'GET',
         url: `https://jsearch.p.rapidapi.com/${endpoint}`,
-        params: {
-          query: 'Python developer in Texas, USA',
-          page: '1',
-          num_pages: '1'
+        params: {...QUERY
+        //   query: 'Python developer in Texas, USA',
+        //   page: '1',
+        //   num_pages: '1'
         },
         headers: {
-          'X-RapidAPI-Key': rapidApiKey,
+          'X-RapidAPI-Key': '6771b9a8d3msh835d71d0be7f9b8p1e36e4jsn6914811ae3b2',
           'X-RapidAPI-Host': 'jsearch.p.rapidapi.com'
         }
-    };
+      };
     
     // Fetch the Data
     const fetchData = async () => {
@@ -34,6 +34,7 @@ const useFetch = ({endpoint}) => {
         try {
             const response = await axios.request(options);
             setData(response.data.data);
+            console.log('DATA', response.data.data)
             setIsLoading(false);
         } catch (error) {
             setError(error);
