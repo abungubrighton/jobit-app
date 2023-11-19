@@ -9,13 +9,18 @@ const Popularjobs = () => {
   const router = useRouter();
   const { data, isLoading,error } = useFetch('search', {
     query: "Python developer in Texas, USA",
-    num_pages:3
+    num_pages:1
   })
+  console.log("popular JOBS", data)
+  console.log("popular JOBS errors", error)
 
+
+  const [selectedJpb, setSelectedJpb] = useState();
+  const handlePress = (item) =>{}
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Popularjobs</Text>
+        <Text style={styles.headerTitle}>Popular jobs</Text>
         <TouchableOpacity>
           <Text style={styles.headerBtn}>Show all</Text>
         </TouchableOpacity>
