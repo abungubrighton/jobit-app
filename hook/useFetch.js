@@ -3,7 +3,7 @@ import axios from "axios";
 // import { RAPID_API_KEY } from "@env";
 
 // const rapidApiKey = RAPID_API_KEY;
-const useFetch = (endpoint,QUERY) => {
+const useFetch = (endpoint, QUERY) => {
     /**
      * Planning to reuse this functionality hence the name HOOK
      * will take endpoint as a prop, just makes the URL reusable.
@@ -12,23 +12,23 @@ const useFetch = (endpoint,QUERY) => {
     const [isLoading, setIsLoading] = useState(false);
     const [data, setData] = useState([]);
     const [error, setError] = useState(null);
-    
+
     const options = {
         method: 'GET',
         url: `https://jsearch.p.rapidapi.com/${endpoint}`,
         params: {...QUERY
-        //   query: 'Python developer in Texas, USA',
-        //   page: '1',
-        //   num_pages: '1'
+            //   query: 'Python developer in Texas, USA',
+            //   page: '1',
+            //   num_pages: '1'
         },
         headers: {
-          'X-RapidAPI-Key': '6771b9a8d3msh835d71d0be7f9b8p1e36e4jsn6914811ae3b2',
-          'X-RapidAPI-Host': 'jsearch.p.rapidapi.com'
+            'X-RapidAPI-Key': '4705967834mshe3a74787e56b3f2p1fc837jsn294becaab1b6',
+            'X-RapidAPI-Host': 'jsearch.p.rapidapi.com'
         }
-      };
-    
+    };
+
     // Fetch the Data
-    const fetchData = async () => {
+    const fetchData = async() => {
         setIsLoading(true);
 
         try {
@@ -39,14 +39,14 @@ const useFetch = (endpoint,QUERY) => {
         } catch (error) {
             setError(error);
             alert('There is an error.');
-            
+
         } finally {
             setIsLoading(false);
         }
     };
-    
+
     useEffect(() => {
-        fetchData();
+        // fetchData();
     }, []);
 
     const refetch = () => {
@@ -54,12 +54,12 @@ const useFetch = (endpoint,QUERY) => {
          * Just in case the use effect had issues while trying to fetch data
          */
         setIsLoading(true);
-        fetchData();
+        // fetchData();
     }
-    
 
-    return {data,isLoading,error,refetch};
-    
+
+    return { data, isLoading, error, refetch };
+
 }
 
 export default useFetch;
